@@ -7,8 +7,7 @@ import (
 )
 
 var (
-	errInvalidBegin  = errors.New("begin must be less than end")
-	errNegativeEdges = errors.New("begin and end must be positive")
+	errInvalidBegin = errors.New("begin must be less than end")
 )
 
 type number interface {
@@ -23,10 +22,6 @@ type Range[T number] struct {
 func NewRange[T number](begin T, end T) (*Range[T], error) {
 	if begin > end {
 		return nil, errInvalidBegin
-	}
-
-	if begin < 0 || end < 0 {
-		return nil, errNegativeEdges
 	}
 
 	return &Range[T]{
