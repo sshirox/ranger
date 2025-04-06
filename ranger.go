@@ -30,10 +30,6 @@ func NewRange[T number](start T, end T) (*Range[T], error) {
 	}, nil
 }
 
-func (r Range[T]) Start() T {
-	return r.start
-}
+func (r *Range[T]) Start() T { return r.start }
 
-func (r Range[T]) End() T {
-	return r.end
-}
+func (r *Range[T]) End() T { return r.end }
