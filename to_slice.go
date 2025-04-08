@@ -1,5 +1,7 @@
 package ranger
 
+import "math"
+
 func (r *Range[T]) ToSlice(step T) []T {
 	if step == 0 {
 		panic("step must not be zero")
@@ -11,7 +13,15 @@ func (r *Range[T]) ToSlice(step T) []T {
 		panic("step direction does not match range direction")
 	}
 
-	var result []T
+	var count T
+	if step > 0 {
+		count = (end - start) / step
+	} else {
+		count = (start - end) / (-step)
+	}
+
+	capacity := int(math.Ceil(float64(count))) + 1
+	result := make([]T, 0, capacity)
 
 	if step > 0 {
 		for v := start; v <= end; v += step {
