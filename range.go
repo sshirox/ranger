@@ -2,17 +2,11 @@ package ranger
 
 import (
 	"errors"
-
-	"golang.org/x/exp/constraints"
 )
 
 var (
 	errInvalidStart = errors.New("start must be less than end")
 )
-
-type number interface {
-	constraints.Integer | constraints.Float
-}
 
 type Range[T number] struct {
 	start T
