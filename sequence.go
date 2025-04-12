@@ -11,7 +11,7 @@ var (
 )
 
 type Sequence[T number] struct {
-	data []T
+	values []T
 }
 
 func (r *Range[T]) ToSequence(step T) (*Sequence[T], error) {
@@ -33,17 +33,17 @@ func (r *Range[T]) ToSequence(step T) (*Sequence[T], error) {
 	}
 
 	capacity := int(math.Ceil(float64(count))) + 1
-	result := make([]T, 0, capacity)
+	values := make([]T, 0, capacity)
 
 	if step > 0 {
 		for v := start; v <= end; v += step {
-			result = append(result, v)
+			values = append(values, v)
 		}
 	} else {
 		for v := start; v >= end; v += step {
-			result = append(result, v)
+			values = append(values, v)
 		}
 	}
 
-	return &Sequence[T]{data: result}, nil
+	return &Sequence[T]{values: values}, nil
 }
