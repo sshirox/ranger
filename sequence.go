@@ -5,14 +5,14 @@ import (
 	"math"
 )
 
-type Sequence[T number] struct {
-	data []T
-}
-
 var (
 	errZeroStep         = errors.New("step must not be zero")
 	errInvalidDirection = errors.New("step direction does not match range direction")
 )
+
+type Sequence[T number] struct {
+	data []T
+}
 
 func (r *Range[T]) ToSequence(step T) (*Sequence[T], error) {
 	if step == 0 {
