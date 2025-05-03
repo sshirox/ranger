@@ -14,6 +14,14 @@ type Sequence[T number] struct {
 	values []T
 }
 
+func NewSequence[T number](values []T) *Sequence[T] {
+	return &Sequence[T]{values: values}
+}
+
+func (s *Sequence[T]) Values() []T {
+	return s.values
+}
+
 func (r *Range[T]) ToSequence(step T) (*Sequence[T], error) {
 	if step == 0 {
 		return nil, errZeroStep
